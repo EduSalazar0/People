@@ -27,7 +27,7 @@
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,2*">
                         <Label Text="{Binding Id}" TextColor="{StaticResource Primary}"/>
-                        <Label Grid.Column="1" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
+                        <Label Grid.Column="1" Text="{Binding Nombre}" TextColor="{StaticResource Primary}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
