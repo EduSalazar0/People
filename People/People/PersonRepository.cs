@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using People.Models;
 using System.Threading.Tasks;
-using Android.OS;
+
 
 namespace People;
 
@@ -20,7 +20,7 @@ public class PersonRepository
             return;
 
         conn = new SQLiteAsyncConnection(_dbPath);
-        await conn.CreateTableAsync<Person>();
+        
           
     }
 
@@ -67,4 +67,39 @@ public class PersonRepository
 
         return new List<Person>();
     }
+
+    public async Task DeleteAsync(string name)
+    {
+        try
+        {
+            await Init();
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new Exception("Se requiere un nombre válido.");
+            }
+
+            // Buscar la persona por nombre.
+            var person = await conn.Table<Person>().FirstOrDefaultAsync(a => a.Name == name);
+
+
+            if (person == null)
+            {
+                throw new Exception($"No se encontró una persona con el nombre '{name}'.");
+            }
+
+            // Eliminar el objeto encontrado.
+            await  conn.DeleteAsync(person);
+            
+
+            StatusMessage = $"Registro eliminado exitosamente (Nombre: {name}).";
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Error al eliminar {name}. Detalles: {ex.Message}";
+        }
+
+
+    }
+    
 }

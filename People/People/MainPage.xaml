@@ -3,28 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:People.Models"
              x:Class="People.MainPage" 
+             xmlns:viewModel="clr-namespace:People.ViewModels" 
              BackgroundColor="{DynamicResource Light}">
 
-    <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
-          RowDefinitions="Auto,Auto,Auto,Auto,*">
+    <Grid Padding="6" RowSpacing="6" ColumnSpacing="6"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
 
-        <Entry x:Name="newPerson"
-           Placeholder="Enter name" />
+        <Entry x:Name="ESalazarnewPerson"
+           Placeholder="Enter name" 
+           Text="{Binding NewPersonName}"/>
 
-        <Button Text="Add Person"
+        <Button x:Name="ESalazarAddPerson"
+            Text="Add Person"
             Grid.Row="1"
-            Clicked="OnNewButtonClicked" />
+            Command="{Binding  AddPersonCommand}" />
 
-        <Label x:Name="statusMessage"
+        <Label x:Name="ESalazarStatusMessage"
+           Text="{Binding StatusMessage}"
            TextColor="{StaticResource Primary}"
            Grid.Row="2" />
 
-        <Button Text="Get All People"
+        <Button x:Name="ESalazarGetAllPeople"
+            Text="Get All People"
             Grid.Row="3"
-            Clicked="OnGetButtonClicked" />
+            Command="{Binding  GetAllPeopleCommand}" />
 
-        <CollectionView x:Name="peopleList" Grid.Row="4">
-            <CollectionView.ItemTemplate>
+        <CollectionView x:Name="peopleList" 
+                       Grid.Row="4"
+                       ItemsSource="{Binding PeopleList}"
+                       HeightRequest="200"
+                       VerticalScrollBarVisibility="Default"
+                       SelectionMode="Single"
+                       SelectionChangedCommand="{Binding DeletePersonCommand}"
+                       SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+            
+                <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Person">
                     <Grid ColumnDefinitions="*,2*">
                         <Label Text="{Binding Id}" TextColor="{StaticResource Primary}"/>
