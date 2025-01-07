@@ -9,6 +9,14 @@
 
     
     <VerticalStackLayout>
+        <Grid>
+            <Entry x:Name="ESalazarLabel2"
+                   BackgroundColor="{DynamicResource Light}"
+                   TextColor="{StaticResource Primary}"
+                   Text="Al presionar los recuadros verdes, los registros se eliminaran al instante."
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+        </Grid>
         <Grid HorizontalOptions="FillAndExpand" Padding="6" RowSpacing="6" ColumnSpacing="6"
               RowDefinitions="Auto,Auto,Auto,Auto,Auto">
 
