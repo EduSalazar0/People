@@ -4,49 +4,114 @@
              xmlns:model="clr-namespace:People.Models"
              x:Class="People.MainPage" 
              xmlns:viewModel="clr-namespace:People.ViewModels" 
-             BackgroundColor="{DynamicResource Light}">
+             BackgroundColor="{DynamicResource Light}"
+             Title="Eduardo Salazar -- People">
 
-    <Grid Padding="6" RowSpacing="6" ColumnSpacing="6"
-          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
+    
+    <VerticalStackLayout>
+        <Grid HorizontalOptions="FillAndExpand" Padding="6" RowSpacing="6" ColumnSpacing="6"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto">
 
-        <Entry x:Name="ESalazarnewPerson"
-           Placeholder="Enter name" 
-           Text="{Binding NewPersonName}"/>
+            <Entry x:Name="ESalazarnewPerson"
+                   BackgroundColor="White"
+                   TextColor="{StaticResource Primary}"
+                   Placeholder="Ingrese su nombre" 
+                   Text="{Binding NewPersonName}"/> 
 
-        <Button x:Name="ESalazarAddPerson"
-            Text="Add Person"
-            Grid.Row="1"
-            Command="{Binding  AddPersonCommand}" />
+            <Button x:Name="ESalazarAddPerson"
+                    Text="Añadir Persona"
+                    Grid.Row="1"
+                    Command="{Binding  AddPersonCommand}" />
 
-        <Label x:Name="ESalazarStatusMessage"
-           Text="{Binding StatusMessage}"
-           TextColor="{StaticResource Primary}"
-           Grid.Row="2" />
+            <Label x:Name="ESalazarStatusMessage"
+                   Text="{Binding StatusMessage}"
+                   TextColor="{StaticResource Primary}"
+                   Grid.Row="2" />
 
-        <Button x:Name="ESalazarGetAllPeople"
-            Text="Get All People"
-            Grid.Row="3"
-            Command="{Binding  GetAllPeopleCommand}" />
+            <Button x:Name="ESalazarGetAllPeople"
+                    Text="Mostrar los registros"
+                    Grid.Row="3"
+                    Command="{Binding  GetAllPeopleCommand}" />
 
-        <CollectionView x:Name="peopleList" 
-                       Grid.Row="4"
-                       ItemsSource="{Binding PeopleList}"
-                       HeightRequest="200"
-                       VerticalScrollBarVisibility="Default"
-                       SelectionMode="Single"
-                       SelectionChangedCommand="{Binding DeletePersonCommand}"
-                       SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+            
+            <CollectionView x:Name="peopleList" 
+               Grid.Row="4"
+               ItemsSource="{Binding PeopleList}"
+               HeightRequest="200"
+               VerticalScrollBarVisibility="Default"
+               SelectionMode="Single"
+               SelectionChangedCommand="{Binding DeletePersonCommand}"
+               SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItem}">
+            
+
             
                 <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Person">
-                    <Grid ColumnDefinitions="*,2*">
-                        <Label Text="{Binding Id}" TextColor="{StaticResource Primary}"/>
-                        <Label Grid.Column="1" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    <DataTemplate x:DataType="model:Person">
 
-    </Grid>
+                        <Frame BackgroundColor="DarkOliveGreen" CornerRadius="10">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Id}"
+                                        TextColor="Yellow" 
+                                        FontSize="Small" 
+                                        VerticalTextAlignment="Center" 
+                                        HorizontalTextAlignment="Start"/>
+
+                                <Frame WidthRequest="10" BackgroundColor="Transparent" BorderColor="Transparent"/>
+
+                                <Label Text="{Binding Name}" 
+                                        TextColor="White" 
+                                        FontSize="Medium" 
+                                        VerticalTextAlignment="Center"
+                                        HorizontalTextAlignment="Center"/>
+                            </HorizontalStackLayout>
+
+                        </Frame>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+                
+        </Grid>
+
+
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <Frame x:Name="ESalazarFrame1"
+                   BackgroundColor="Beige" >
+                <HorizontalStackLayout>
+                    <Frame WidthRequest="50" HeightRequest="50" BorderColor="Transparent" BackgroundColor="Transparent" 
+                    CornerRadius="50" HorizontalOptions="Center">
+                        <Image Source="https://i.eldiario.com.ec/fotos-manabi-ecuador/2014/11/20141102040000_a-3-garrotazosa-en-un-mona-logo_tn0.jpg"
+                        HeightRequest="150"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        WidthRequest="150"/>
+                    </Frame>
+                    <Frame WidthRequest="10" BackgroundColor="Transparent" BorderColor="Transparent"/>
+                    <VerticalStackLayout>
+                        <Label Text="Eduardo Salazar"
+                               FontAttributes="Bold"
+                               FontSize="Medium"
+                               TextColor="Black"/>
+                        <Label Text="Tengo 20 años"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                        <Label Text="Oriundo de Manabí"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+    
+    
+
+    
 
 </ContentPage>

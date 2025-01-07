@@ -13,7 +13,9 @@ public partial class MainPage : ContentPage
         BindingContext = new PersonViewModel();  
     }
 
-   /* public async void OnNewButtonClicked(object sender, EventArgs args)
+   /* 
+    * Codigo "comentado referente a la funcionalidad pasada de los botones"
+    * public async void OnNewButtonClicked(object sender, EventArgs args)
     {
         statusMessage.Text = "";
 

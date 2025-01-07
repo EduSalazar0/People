@@ -16,12 +16,10 @@ public class PersonRepository
 
     private async Task Init()
     {
-        if(conn != null)
+        if (conn != null)
             return;
-
+            
         conn = new SQLiteAsyncConnection(_dbPath);
-        
-          
     }
 
     public PersonRepository(string dbPath)
@@ -43,7 +41,7 @@ public class PersonRepository
             
             result = await conn.InsertAsync(new Person { Name = name });
 
-            StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
+            StatusMessage = string.Format("{0} Nombre registrado: {1})", result, name);
         }
         catch (Exception ex)
         {

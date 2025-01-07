@@ -86,14 +86,14 @@ namespace People.ViewModels
                 }
 
                 await _personRepository.AddNewPerson(NewPersonName);
-                StatusMessage = $"Persona '{NewPersonName}' guardada exitosamente";
 
-                //Refresca la lista de personas
-                await GetAllPeople();
-                NewPersonName = string.Empty;
+                StatusMessage = $"Persona: '{NewPersonName}' añadida correctamente.";
+            
+                //Limpiar el campo de entrada
+                
                 OnPropertyChanged(nameof(NewPersonName));
-
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 StatusMessage = $"Error al guardar la persona: {ex.Message}";
             }
@@ -109,9 +109,10 @@ namespace People.ViewModels
                 foreach (var person in people)
                 {
                     PeopleList.Add(person);
+                    
                 }
-
                 StatusMessage = $"Se cargaron {PeopleList.Count} personas";
+                
             } catch (Exception ex)
             {
                 StatusMessage = $"Error al cargar las personas: {ex.Message}";
