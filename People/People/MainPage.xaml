@@ -13,6 +13,7 @@
             <Entry x:Name="ESalazarLabel2"
                    BackgroundColor="{DynamicResource Light}"
                    TextColor="{StaticResource Primary}"
+                   FontAttributes="Bold"
                    Text="Al presionar los recuadros verdes, los registros se eliminaran al instante."
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"/>
